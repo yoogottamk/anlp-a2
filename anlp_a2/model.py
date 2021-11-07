@@ -3,6 +3,7 @@ This file generates the json configuration that allennlp uses to build and train
 """
 
 import json
+import os
 from pathlib import Path
 
 from anlp_a2.config import DATASET_DIR
@@ -114,7 +115,7 @@ def build_model():
         "vocabulary": vocabulary(),
         "model": model(),
         "data_loader": data_loader(),
-        "distributed": {"cuda_devices": [0]},
+        "distributed": {"cuda_devices": os.getenv("SLURM_STEP_GPUS", "0").split(",")},
         "trainer": trainer(),
     }
 
