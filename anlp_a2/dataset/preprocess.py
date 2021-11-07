@@ -78,6 +78,7 @@ def preprocess_dataset(n_procs=cpu_count() - 1):
         wf += local_wf
 
     vocab_dir = DATASET_DIR / "vocab"
+    vocab_dir.mkdir(parents=True, exist_ok=True)
 
     # vocabulary file
     vocab_file = (vocab_dir / "tokens.txt").open("w+")
