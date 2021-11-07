@@ -13,8 +13,8 @@ function download_dataset {
 
 function extract_dataset {
     tar xzf $DATASET_DIR/raw-dataset.tar.gz -C $DATASET_DIR
-    mkdir -p $DATASET_DIR/dataset
-    find $DATASET_DIR/swb_ms98_transcriptions -type f -name '*-trans.text' -exec bash -c 'cut -d" " -f4- {} > $DATASET_DIR/dataset/`basename {}`' \;
+    mkdir -p $DATASET_DIR/dataset/raw
+    find $DATASET_DIR/swb_ms98_transcriptions -type f -name '*-trans.text' -exec bash -c 'cut -d" " -f4- {} > $DATASET_DIR/dataset/raw/`basename {}`' \;
 }
 
 [[ $( md5sum $DATASET_DIR/raw-dataset.tar.gz | cut -d' ' -f1 ) = $RAW_DATASET_HASH ]] || download_dataset
