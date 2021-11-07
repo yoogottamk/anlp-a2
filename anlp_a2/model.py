@@ -115,7 +115,9 @@ def build_model():
         "vocabulary": vocabulary(),
         "model": model(),
         "data_loader": data_loader(),
-        "distributed": {"cuda_devices": os.getenv("SLURM_STEP_GPUS", "0").split(",")},
+        "distributed": {
+            "cuda_devices": list(map(int, os.getenv("SLURM_STEP_GPUS", "0").split(",")))
+        },
         "trainer": trainer(),
     }
 
