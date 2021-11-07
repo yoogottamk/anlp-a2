@@ -31,7 +31,7 @@ def dataset_reader():
 def vocabulary():
     return {
         "type": "from_files",
-        "directory": str(DATASET_DIR),
+        "directory": str(DATASET_DIR / "vocab"),
     }
 
 

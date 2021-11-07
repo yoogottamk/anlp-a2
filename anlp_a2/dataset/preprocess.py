@@ -77,15 +77,17 @@ def preprocess_dataset(n_procs=cpu_count() - 1):
     for local_wf in tqdm(local_wfs, desc="Accumulating word frequencies"):
         wf += local_wf
 
+    vocab_dir = DATASET_DIR / "vocab"
+
     # vocabulary file
-    vocab_file = (DATASET_DIR / "tokens.txt").open("w+")
+    vocab_file = (vocab_dir / "tokens.txt").open("w+")
     for (w, f) in wf.items():
         if f >= 5:
             vocab_file.write(f"{w}\n")
     vocab_file.close()
 
     # non padded namespaces file
-    (DATASET_DIR / "non_padded_namespaces.txt").write_text(
+    (vocab_dir / "non_padded_namespaces.txt").write_text(
         "\n".join(["*labels", "*tags"])
     )
 
