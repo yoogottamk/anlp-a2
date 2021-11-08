@@ -6,7 +6,7 @@ RAW_DATASET_HASH=487a51d1789b174d13bdc4926e5fb300
 export DATASET_DIR=${DATASET_DIR:-$PWD}
 
 function download_dataset {
-    curl -fSL \
+    curl -fSL -k \
         https://www.isip.piconepress.com/projects/switchboard/releases/switchboard_word_alignments.tar.gz \
         -o$DATASET_DIR/raw-dataset.tar.gz
 }
