@@ -96,7 +96,7 @@ def data_loader():
 
 def trainer():
     return {
-        "num_epochs": 10,
+        "num_epochs": 30,
         "optimizer": {"type": "dense_sparse_adam"},
         "learning_rate_scheduler": {
             "type": "noam",
