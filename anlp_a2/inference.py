@@ -1,3 +1,4 @@
+import numpy as np
 import torch
 from allennlp_models.lm.modules.token_embedders.bidirectional_lm import (
     BidirectionalLanguageModelTokenEmbedder as BLMTEncoder,
@@ -11,7 +12,7 @@ from anlp_a2.config import DATASET_DIR
 
 if __name__ == "__main__":
     model_file = str(DATASET_DIR.parent / "model" / "model.tar.gz")
-    sentence = "this is a test sentence"
+    sentence = "<S> im speaking a sentence </S>"
     tokens = [Token(word) for word in sentence.split()]
 
     encoder = BLMTEncoder(archive_file=model_file, bos_eos_tokens=None)
@@ -22,5 +23,8 @@ if __name__ == "__main__":
 
     indices_tensor = torch.LongTensor([character_indices])
 
-    embeddings = encoder(indices_tensor)[0]
-    print(embeddings)
+    embeddings = encoder(indices_tensor).detach().numpy()
+    print(embeddings.shape)
+    print(embeddings[0])
+
+    np.save("sentence-emb2.npy", embeddings[0])
