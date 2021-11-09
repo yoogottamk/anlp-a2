@@ -12,6 +12,9 @@ computer[0] <-> laptop[1]
 Euclidean Distance: 52.403221130371094
    Cosine Distance: 0.3818994164466858
 ============================================================
+```
+
+```
 ============================================================
 i am watching videos on my computer
 i am playing soccer with that ball
@@ -20,6 +23,9 @@ computer[0] <-> ball[2]
 Euclidean Distance: 62.01863479614258
    Cosine Distance: 0.5142042934894562
 ============================================================
+```
+
+```
 ============================================================
 i am playing games on my laptop
 i am playing soccer with that ball
@@ -40,6 +46,9 @@ play[0] <-> plays[1]
 Euclidean Distance: 53.09914779663086
    Cosine Distance: 0.38139408826828003
 ============================================================
+```
+
+```
 ============================================================
 i play baseball and golf
 i play soccer in the playground
@@ -48,6 +57,9 @@ play[0] <-> play[2]
 Euclidean Distance: 17.431089401245117
    Cosine Distance: 0.04140061140060425
 ============================================================
+```
+
+```
 ============================================================
 he plays a big role at his company
 i play soccer in the playground
@@ -68,6 +80,9 @@ rings[0] <-> ring[1]
 Euclidean Distance: 66.4549560546875
    Cosine Distance: 0.5852328538894653
 ============================================================
+```
+
+```
 ============================================================
 my phone rings when you call me
 the lion went through a ring of fire
@@ -76,6 +91,9 @@ rings[0] <-> ring[2]
 Euclidean Distance: 64.56147003173828
    Cosine Distance: 0.5729151368141174
 ============================================================
+```
+
+```
 ============================================================
 he is wearing a ring on his finger
 the lion went through a ring of fire
