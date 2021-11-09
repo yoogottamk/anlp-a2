@@ -5,3 +5,4 @@ raw-dataset.tar.gz
 swb_ms98_transcriptions
 /dataset
 /model.json
+/model/

@@ -10,21 +10,24 @@ from allennlp.data.tokenizers.token_class import Token
 
 from anlp_a2.config import DATASET_DIR
 
-if __name__ == "__main__":
-    model_file = str(DATASET_DIR.parent / "model" / "model.tar.gz")
-    sentence = "<S> im speaking a sentence </S>"
-    tokens = [Token(word) for word in sentence.split()]
+model_file = str(DATASET_DIR.parent / "model" / "model.tar.gz")
+ENCODER = BLMTEncoder(archive_file=model_file, bos_eos_tokens=None)
+INDEXER = ETCIndexer()
+vocab = ENCODER._lm.vocab
 
-    encoder = BLMTEncoder(archive_file=model_file, bos_eos_tokens=None)
 
-    indexer = ETCIndexer()
-    vocab = encoder._lm.vocab
-    character_indices = indexer.tokens_to_indices(tokens, vocab)["elmo_tokens"]
-
+def get_embeddings(sentence: str, word: str):
+    idx = sentence.split().index(word)
+    sentence = f"<S> {sentence} </S>"
+    tokens = [Token(w) for w in sentence.split()]
+    character_indices = INDEXER.tokens_to_indices(tokens, vocab)["elmo_tokens"]
     indices_tensor = torch.LongTensor([character_indices])
 
-    embeddings = encoder(indices_tensor).detach().numpy()
-    print(embeddings.shape)
-    print(embeddings[0])
+    emb = ENCODER(indices_tensor).numpy()
+    return emb[0][idx]
 
-    np.save("sentence-emb2.npy", embeddings[0])
+
+if __name__ == "__main__":
+    print(get_embeddings("i am wearing a big ring", "ring").shape)
+    print(get_embeddings("i have a diamond ring", "ring").shape)
+    print(get_embeddings("my phone rings", "rings").shape)
